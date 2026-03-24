@@ -1977,6 +1977,157 @@ body {
 #uslugi .section-desc  { margin-bottom: 1rem !important; font-size: 0.88rem !important; }
 #uslugi .bento-grid    { margin-top: 0 !important; }
 
+/* ═══════════════════════════════════════
+   DEV SIGNATURE — in footer bar, left side
+   ═══════════════════════════════════════ */
+.dev-signature {
+    position: absolute;
+    left: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--font-body);
+    z-index: 10;
+}
+
+/* trigger — muted, matches dark footer tone */
+.dev-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: .38rem;
+    font-size: .62rem;
+    color: rgba(255,255,255,.28);
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+    transition: color .3s ease;
+    letter-spacing: .01em;
+}
+.dev-trigger i {
+    color: rgba(122,158,126,.5);
+    font-size: .6rem;
+    transition: color .3s ease;
+}
+.dev-trigger strong {
+    font-weight: 600;
+    color: rgba(255,255,255,.32);
+    transition: color .3s ease;
+}
+.dev-signature:hover .dev-trigger {
+    color: rgba(255,255,255,.65);
+}
+.dev-signature:hover .dev-trigger i {
+    color: var(--sage-light);
+}
+.dev-signature:hover .dev-trigger strong {
+    color: rgba(255,255,255,.75);
+}
+
+/* popup card — otwiera się ku górze */
+.dev-card {
+    position: absolute;
+    bottom: calc(100% + .9rem);
+    left: 0;
+    width: 260px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 -4px 32px rgba(90,80,70,.18), 0 12px 40px rgba(90,80,70,.12);
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(6px) scale(.97);
+    transform-origin: bottom left;
+    transition: opacity .3s ease, transform .35s cubic-bezier(.4,0,.2,1);
+}
+.dev-signature:hover .dev-card,
+.dev-signature:focus-within .dev-card {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+}
+
+/* card header */
+.dev-card-header {
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+    padding: .9rem 1rem .7rem;
+    background: linear-gradient(135deg, var(--sage-bg) 0%, rgba(168,197,214,.08) 100%);
+    border-bottom: 1px solid var(--border-light);
+}
+.dev-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--sage) 0%, var(--sky) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: .95rem;
+    flex-shrink: 0;
+    box-shadow: 0 3px 10px var(--sage-glow);
+}
+.dev-info h5 {
+    font-family: var(--font-body);
+    font-size: .8rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0 0 .1rem;
+    line-height: 1.2;
+}
+.dev-info span {
+    font-size: .66rem;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+/* card body */
+.dev-card-body {
+    padding: .65rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+}
+.dev-contact-item {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: .71rem;
+    color: var(--text-body);
+    transition: color var(--tr);
+    text-decoration: none;
+}
+.dev-contact-item i {
+    width: 14px;
+    text-align: center;
+    color: var(--sage);
+    font-size: .7rem;
+    flex-shrink: 0;
+}
+.dev-contact-item:hover { color: var(--sage-dark); }
+
+/* card footer */
+.dev-card-footer {
+    padding: .45rem 1rem;
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-light);
+}
+.dev-tagline {
+    font-size: .64rem;
+    color: var(--text-muted);
+    font-style: italic;
+    font-family: var(--font-elegant);
+    letter-spacing: .02em;
+}
+
+/* mobile — ukryj nazwisko, zostaw tylko ikonę */
+@media (max-width: 768px) {
+    .dev-signature { left: .8rem; }
+    .dev-trigger strong { display: none; }
+    .dev-card { width: 230px; }
+}
+
 /* ─── MAP SECTION ─── */
 .map-wrap {
     border: 1px solid var(--glass-border) !important;

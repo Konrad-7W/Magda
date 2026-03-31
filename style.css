@@ -204,66 +204,102 @@ ul { list-style: none; }
 .section:nth-child(odd) { background: var(--bg-primary); }
 
 /* ═══════════════════════════
-   PRELOADER — oddech, spokój, organiczne kształty
-   Animacja oddechowa: podświadomie uspokaja odbiorcę
+   PRELOADER — motylek z iskierkami ✨
+   Animacja dla dzieci: kolorowy motylek latający w pętli + błyszczące iskierki
    ═══════════════════════════ */
 .preloader {
     position: fixed; inset: 0; z-index: 99999;
-    background: var(--bg-primary);
+    background: linear-gradient(160deg, #fff9f0 0%, #fce4f3 50%, #e8f4ff 100%);
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
-    transition: opacity 1s ease;
+    transition: opacity 0.8s ease;
+    overflow: hidden;
 }
 .preloader.hidden { opacity: 0; pointer-events: none; }
-.preloader-inner { position: relative; width: 120px; height: 120px; }
-.preloader-orbit {
-    position: absolute; inset: 0;
-    border: 2px solid transparent;
-    border-top-color: var(--sage);
-    border-radius: 50%;
-    animation: orbit 3s linear infinite;
+
+/* Scena z motylkiem */
+.butterfly-scene {
+    position: relative;
+    width: 220px; height: 220px;
     display: flex; align-items: center; justify-content: center;
 }
-.preloader-orbit span {
-    position: absolute; top: -6px;
-    font-size: .8rem; color: var(--sage);
+
+/* Motylek */
+.butterfly {
+    display: flex; align-items: center; justify-content: center;
+    animation: butterflyFly 3s ease-in-out infinite;
+    filter: drop-shadow(0 4px 12px rgba(255,120,200,0.5));
 }
-.orbit-2 {
-    inset: 15px;
-    border-top-color: var(--terra);
-    animation-duration: 4s; animation-direction: reverse;
+.bf-left, .bf-right {
+    width: 52px; height: 70px;
+    transform-origin: right center;
 }
-.orbit-3 {
-    inset: 30px;
-    border-top-color: var(--sky);
-    animation-duration: 5s;
+.bf-left svg, .bf-right svg { width: 100%; height: 100%; }
+.bf-left  { animation: wingLeft  0.45s ease-in-out infinite alternate; }
+.bf-right { animation: wingRight 0.45s ease-in-out infinite alternate; }
+.bf-body {
+    width: 10px; height: 38px;
+    background: linear-gradient(180deg, #8B4A8B, #C77DDB);
+    border-radius: 5px;
+    z-index: 1;
+    box-shadow: 0 0 8px rgba(199,125,219,0.7);
 }
-.preloader-core {
-    position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 1.8rem; color: var(--sage);
-    animation: breathe 4s ease-in-out infinite;
+
+/* Iskierki */
+.sparkle {
+    position: absolute;
+    font-size: 1.1rem;
+    animation: sparklePop 2s ease-in-out infinite;
+    opacity: 0;
+    pointer-events: none;
 }
-@keyframes orbit { to { transform: rotate(360deg); } }
-@keyframes breathe {
-    0%, 100% { opacity: .5; transform: translate(-50%, -50%) scale(1); }
-    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+.s1 { top:  10%; left: 15%; animation-delay: 0s;    color: #FFD166; }
+.s2 { top:  5%;  left: 70%; animation-delay: 0.3s;  color: #FF9ED8; font-size: 0.8rem; }
+.s3 { top:  20%; left: 85%; animation-delay: 0.6s;  color: #FFD166; font-size: 1.3rem; }
+.s4 { top:  70%; left: 10%; animation-delay: 0.9s;  color: #C77DDB; }
+.s5 { top:  80%; left: 75%; animation-delay: 1.2s;  color: #FF9ED8; }
+.s6 { top:  55%; left: 88%; animation-delay: 1.5s;  font-size: 1.2rem; }
+.s7 { top:  90%; left: 40%; animation-delay: 1.8s;  font-size: 1.0rem; }
+.s8 { top:  35%; left: 5%;  animation-delay: 0.45s; color: #FFD166; font-size: 0.9rem; }
+
+@keyframes wingLeft {
+    from { transform: scaleX(1)   rotateY(0deg); }
+    to   { transform: scaleX(0.2) rotateY(20deg); }
 }
+@keyframes wingRight {
+    from { transform: scaleX(1)   rotateY(0deg); }
+    to   { transform: scaleX(0.2) rotateY(-20deg); }
+}
+@keyframes butterflyFly {
+    0%   { transform: translateY(0px)   rotate(-4deg); }
+    25%  { transform: translateY(-22px) rotate(2deg); }
+    50%  { transform: translateY(-8px)  rotate(-2deg); }
+    75%  { transform: translateY(-28px) rotate(3deg); }
+    100% { transform: translateY(0px)   rotate(-4deg); }
+}
+@keyframes sparklePop {
+    0%        { opacity: 0; transform: scale(0.5) translateY(0); }
+    30%, 60%  { opacity: 1; transform: scale(1.2) translateY(-8px); }
+    100%      { opacity: 0; transform: scale(0.6) translateY(-18px); }
+}
+
 .preloader-text {
-    margin-top: 2rem;
-    font-family: var(--font-elegant);
-    font-size: 1.15rem; font-style: italic;
-    color: var(--text-muted);
+    margin-top: 1.6rem;
+    font-family: var(--font-body);
+    font-size: 1.1rem; font-weight: 600;
+    color: #C77DDB;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 6px rgba(199,125,219,0.25);
 }
 .preloader-progress {
-    width: 200px; height: 3px;
-    background: rgba(0, 0, 0, .04);
-    border-radius: 2px; margin-top: 1rem; overflow: hidden;
+    width: 180px; height: 6px;
+    background: rgba(199,125,219,0.15);
+    border-radius: 3px; margin-top: 1.2rem; overflow: hidden;
 }
 .preloader-progress-bar {
     height: 100%; width: 0;
-    background: linear-gradient(90deg, var(--sage), var(--sky));
-    border-radius: 2px; transition: width .1s linear;
+    background: linear-gradient(90deg, #FF9ED8, #FFD166, #C77DDB);
+    border-radius: 3px; transition: width .1s linear;
 }
 
 /* ═══════════════════════════

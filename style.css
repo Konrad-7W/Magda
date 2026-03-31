@@ -2247,3 +2247,125 @@ body {
         margin: 4rem auto 0;
     }
 }
+
+/* ═══════════════════════════════════════════════
+   MOBILE SECTION FIXES — telefon / tablet
+   ═══════════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+    /* ── O MNIE: ogranicz zdjęcie, zmniejsz grid ── */
+    .about-photo {
+        max-height: 150px !important;
+        width: auto !important;
+        max-width: none !important;
+    }
+    .about-grid {
+        padding: 1rem !important;
+        gap: 1rem !important;
+    }
+    .about-signature { display: none !important; }
+    .about-badges {
+        margin-top: 0.5rem !important;
+        gap: 0.3rem !important;
+    }
+    .about-badge {
+        font-size: 0.7rem !important;
+        padding: 0.25rem 0.6rem !important;
+    }
+    .about-cta-row { margin-top: 0.6rem !important; }
+
+    /* ── USŁUGI: mniejsze karty ── */
+    #uslugi .bento-grid { gap: 0.55rem !important; }
+    #uslugi .bento-card { padding: 0.75rem 0.85rem !important; }
+    #uslugi .bento-icon {
+        width: 36px !important; height: 36px !important;
+        font-size: 1rem !important;
+        margin-bottom: 0.35rem !important;
+    }
+    #uslugi .bento-card h3 {
+        font-size: 0.85rem !important;
+        margin-bottom: 0.2rem !important;
+    }
+    #uslugi .bento-card p {
+        font-size: 0.74rem !important;
+        margin-bottom: 0.35rem !important;
+        line-height: 1.4 !important;
+    }
+    #uslugi .bento-price {
+        font-size: 0.7rem !important;
+        padding: 0.15rem 0.5rem !important;
+        margin-bottom: 0.35rem !important;
+    }
+    #uslugi .bento-link { font-size: 0.74rem !important; }
+
+    /* ── OBSZARY: 2 kolumny zamiast 1, mniejsze karty ── */
+    .flip-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.55rem !important;
+        margin-top: 1.2rem !important;
+    }
+    .flip-card { height: 130px !important; }
+    .flip-card-front, .flip-card-back { padding: 0.75rem !important; }
+    .flip-icon {
+        width: 38px !important; height: 38px !important;
+        font-size: 1rem !important;
+        margin-bottom: 0.25rem !important;
+    }
+    .flip-card-front h3, .flip-card-back h3 {
+        font-size: 0.82rem !important;
+        margin-bottom: 0.25rem !important;
+    }
+    .flip-card-back p { font-size: 0.72rem !important; line-height: 1.4 !important; }
+
+    /* ── PROCES: upakuj kroki ── */
+    .step-card {
+        width: 100% !important;
+        max-width: 300px !important;
+        padding: 0.85rem 1rem !important;
+    }
+    .step-number { font-size: 2rem !important; }
+    .step-icon {
+        width: 44px !important; height: 44px !important;
+        font-size: 1.2rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    .step-card h3 { font-size: 0.88rem !important; }
+    .step-card p  { font-size: 0.78rem !important; }
+    .step-connector { padding: 0.2rem 0 !important; }
+
+    /* ── CERTYFIKATY: 2 kolumny, mniejsze karty ── */
+    .section-certs .cert-card { padding: 0.85rem !important; }
+    .section-certs .cert-icon {
+        width: 44px !important; height: 44px !important;
+        font-size: 1.1rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    .section-certs .cert-card h4 { font-size: 0.85rem !important; }
+    .section-certs .cert-card p  { font-size: 0.78rem !important; }
+
+    /* ── DLACZEGO JA: 2 kolumny ── */
+    .section-features .features-grid {
+        flex-wrap: wrap !important;
+        gap: 0.7rem !important;
+    }
+    .section-features .feature-card {
+        flex: 1 1 calc(50% - 0.35rem) !important;
+        padding: 1rem 0.85rem !important;
+    }
+    .feature-icon {
+        width: 42px !important; height: 42px !important;
+        font-size: 1.1rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    .feature-card h4 { font-size: 0.88rem !important; }
+    .feature-card p  { font-size: 0.78rem !important; }
+
+    /* ── MAPA: mniejsza ramka ── */
+    .map-wrap iframe { height: 250px !important; }
+
+    /* ── METODY: ikona mniejsza ── */
+    .method-icon-big {
+        width: 70px !important; height: 70px !important;
+        font-size: 1.6rem !important;
+    }
+}

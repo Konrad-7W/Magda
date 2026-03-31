@@ -140,6 +140,28 @@
 </section>
 </div><!-- /slide-1 hero -->
 
+<!-- SWIPE HINT (mobile only) -->
+<div id="swipeHint" class="swipe-hint">
+    <div class="swipe-hint__hand">
+        <svg viewBox="0 0 64 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <!-- palm -->
+            <rect x="20" y="32" width="24" height="28" rx="8" fill="currentColor" opacity="0.9"/>
+            <!-- fingers -->
+            <rect x="20" y="18" width="6" height="18" rx="3" fill="currentColor"/>
+            <rect x="28" y="14" width="6" height="22" rx="3" fill="currentColor"/>
+            <rect x="36" y="16" width="6" height="20" rx="3" fill="currentColor"/>
+            <rect x="44" y="22" width="5" height="15" rx="2.5" fill="currentColor"/>
+            <!-- thumb -->
+            <rect x="12" y="34" width="10" height="6" rx="3" fill="currentColor"/>
+        </svg>
+    </div>
+    <div class="swipe-hint__arrows">
+        <span class="swipe-hint__arrow swipe-hint__arrow--left">&#8592;</span>
+        <span class="swipe-hint__arrow swipe-hint__arrow--right">&#8594;</span>
+    </div>
+    <p class="swipe-hint__text">Przesuń, aby nawigować</p>
+</div>
+
 <!-- SLIDE 2: O MNIE -->
 <div class="section-slide">
 <section class="section section-about" id="o-mnie">
@@ -832,6 +854,35 @@ document.addEventListener('DOMContentLoaded', () => {
             scroller.scrollTo({ left: next * slideWidth, behavior: 'smooth' });
             setTimeout(() => { wheelLocked = false; }, 700);
         }, { passive: false });
+    }
+
+    /* --- TOUCH SWIPE: left/right → navigate slides --- */
+    if (scroller) {
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let swipeLocked = false;
+
+        scroller.addEventListener('touchstart', e => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+            swipeLocked = false;
+        }, { passive: true });
+
+        scroller.addEventListener('touchend', e => {
+            if (swipeLocked) return;
+            const dx = e.changedTouches[0].clientX - touchStartX;
+            const dy = e.changedTouches[0].clientY - touchStartY;
+            // Only trigger if horizontal swipe > 50px and more horizontal than vertical
+            if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy)) return;
+            swipeLocked = true;
+            const slideWidth = window.innerWidth;
+            const current = Math.round(scroller.scrollLeft / slideWidth);
+            const next = Math.max(0, Math.min(slides.length - 1, current + (dx < 0 ? 1 : -1)));
+            scroller.scrollTo({ left: next * slideWidth, behavior: 'smooth' });
+            // Hide swipe hint after first swipe
+            const hint = document.getElementById('swipeHint');
+            if (hint) { hint.classList.add('swipe-hint--done'); }
+        }, { passive: true });
     }
 
     /* --- FOOTER TOGGLE --- */

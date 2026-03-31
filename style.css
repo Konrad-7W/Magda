@@ -1529,11 +1529,11 @@ html {
 body {
     height: 100%;
     width: 100vw;
-    background: url('tło.png') center center / 100% 100% no-repeat fixed !important;
+    background: url('tlo.png') center center / 100% 100% no-repeat fixed !important;
 }
 @media (max-width: 1024px) {
     body {
-        background: url('tło.png') center center / cover no-repeat scroll !important;
+        background: url('tlo.png') center center / cover no-repeat scroll !important;
     }
 }
 

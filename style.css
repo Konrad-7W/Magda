@@ -1519,14 +1519,12 @@ ul { list-style: none; }
 
 /* --- BACKGROUND IMAGE --- */
 html {
-    overflow: hidden !important;
     height: 100%;
 }
 body {
-    overflow: hidden !important;
-    height: 100vh;
+    height: 100%;
     width: 100vw;
-    background: url('tło.png') center center / cover no-repeat fixed !important;
+    background: url('tło.png') center center / 100% 100% no-repeat fixed !important;
 }
 
 /* --- GLASSMORPHISM VARIABLES (warm light palette) --- */
@@ -1664,7 +1662,7 @@ body {
 
 /* ─── HEADER GLASS ─── */
 .site-header {
-    background: rgba(255,255,255,0.60) !important;
+    background: rgba(255,255,255,0.50) !important;
     backdrop-filter: blur(22px) !important;
     -webkit-backdrop-filter: blur(22px) !important;
     border-bottom: 1px solid rgba(180,160,140,0.25) !important;
@@ -1672,7 +1670,7 @@ body {
     padding: 0.20rem 0 !important;
 }
 .site-header.scrolled {
-    background: rgba(255,255,255,0.82) !important;
+    background: rgba(255,255,255,0.50) !important;
     padding: 0.15rem 0 !important;
 }
 .nav-link { color: var(--glass-body) !important; }

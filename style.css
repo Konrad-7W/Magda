@@ -179,6 +179,7 @@ ul { list-style: none; }
     display: inline-flex; align-items: center; gap: .5rem;
     background: rgba(122, 158, 126, 0.06);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     color: var(--text-dark); font-weight: 600;
     padding: .85rem 2rem; border-radius: var(--radius-full);
     border: 1px solid var(--border-soft);
@@ -352,6 +353,7 @@ ul { list-style: none; }
     position: fixed; inset: 0; z-index: 999;
     background: rgba(250, 247, 242, 0.97);
     backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
     display: flex; align-items: center; justify-content: center;
     opacity: 0; pointer-events: none; transition: opacity .4s ease;
 }
@@ -822,6 +824,9 @@ ul { list-style: none; }
     display: flex; align-items: center; justify-content: center;
     background-attachment: fixed; background-size: cover;
     background-position: center; overflow: hidden;
+}
+@media (max-width: 1024px) {
+    .parallax-divider { background-attachment: scroll; }
 }
 .parallax-1 { background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(122,158,126,.06) 50%, var(--bg-primary) 100%); }
 .parallax-2 { background: linear-gradient(135deg, var(--bg-primary) 0%, rgba(196,131,106,.05) 50%, var(--bg-secondary) 100%); }
@@ -1485,7 +1490,7 @@ ul { list-style: none; }
 @media(max-width:480px) {
     .hero-title { font-size: 2.4rem; }
     .pricing-price { font-size: 2.5rem; }
-    .scroll-to-top { bottom: 1.2rem; right: 1.2rem; width: 42px; height: 42px; }
+    .scroll-to-top { bottom: 4.5rem; right: 1.2rem; width: 42px; height: 42px; }
     .contact-form-wrap { padding: 1.3rem; }
     .newsletter-box { padding: 2rem 1.5rem; }
     .availability-grid { grid-template-columns: 1fr; }
@@ -1526,6 +1531,11 @@ body {
     width: 100vw;
     background: url('tło.png') center center / 100% 100% no-repeat fixed !important;
 }
+@media (max-width: 1024px) {
+    body {
+        background: url('tło.png') center center / cover no-repeat scroll !important;
+    }
+}
 
 /* --- GLASSMORPHISM VARIABLES (warm light palette) --- */
 :root {
@@ -1554,7 +1564,7 @@ body {
 .horizontal-scroller {
     display: flex;
     width: 100vw;
-    height: 100vh;
+    height: 100dvh;
     overflow-x: scroll;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
@@ -1568,7 +1578,7 @@ body {
 .section-slide {
     min-width: 100vw;
     width: 100vw;
-    height: 100vh;
+    height: 100dvh;
     scroll-snap-align: start;
     overflow-y: auto;
     overflow-x: hidden;
@@ -1602,7 +1612,7 @@ body {
 .section-cta {
     background: transparent !important;
     padding: 3.2rem 0 2.8rem;
-    min-height: 100vh;
+    min-height: 100dvh;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -1612,7 +1622,7 @@ body {
 /* Hero takes full slide height, no top padding override */
 .hero-section {
     background: transparent !important;
-    min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
